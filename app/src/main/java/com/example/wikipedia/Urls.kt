@@ -2,12 +2,12 @@ package com.example.wikipedia
 
 object Urls
 {
-    val BaseUrl = "https://en.m.wikipedia.org/w/api.php"
+    val BaseUrl = "https://en.wikipedia.org/w/api.php"
 
     fun getSearchUrl(term:String , skip:Int , take:Int ) : String
     {
         return BaseUrl + "?action=query" +
-                "&fromatversion=2" +
+                "&formatversion=2" +
                 "&generator=prefixsearch" +
                 "&gpssearch=$term" +
                 "&gpslimit=$take" +
@@ -24,10 +24,10 @@ object Urls
     fun getRandomUrl(take:Int) : String
     {
         return BaseUrl + "?action=query" +
-                "&format=json" +
-                "&fromatversion=2" +
+                "format=json" +
+                "&formatversion=2" +
                 "&generator=random" +
-                "grnnamesapce=0" +
+                "&grnnamesapce=0" +
                 "&prop=pageimages|info" +
                 "&grnlimit=$take" +
                 "&inprop=url" +

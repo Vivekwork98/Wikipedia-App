@@ -22,7 +22,7 @@ class FavouritesFragment : Fragment() {
     override fun onAttach(context: Context?) {
         super.onAttach(context)
 
-        wikiManager = (activity!!.applicationContext as WikiApplication).wikiManager
+        wikiManager = (activity?.applicationContext as WikiApplication).wikiManager
     }
 
     override fun onCreateView(
@@ -46,7 +46,7 @@ class FavouritesFragment : Fragment() {
             val favouriteArticles = wikiManager!!.getFavourites()
             adapter.currentResults.clear()
             adapter.currentResults.addAll(favouriteArticles as ArrayList<Wikipage>)
-            activity!!.runOnUiThread { adapter.notifyDataSetChanged() }
+            activity?.runOnUiThread { adapter.notifyDataSetChanged() }
         }
     }
 

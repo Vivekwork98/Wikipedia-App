@@ -10,14 +10,14 @@ import android.view.*
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.noButton
-import org.jetbrains.anko.yesButton as yesButton1
+import org.jetbrains.anko.yesButton
 
 
 class HistoryFragment : Fragment() {
 
     private var wikiManager : WikiManager? = null
     var historyRecycler: RecyclerView? = null
-    private val adapter : ArticleCardRecyclerAdapter = ArticleCardRecyclerAdapter()
+    private val adapter  = ArticleCardRecyclerAdapter()
 
 
     init {
@@ -28,7 +28,7 @@ class HistoryFragment : Fragment() {
     override fun onAttach(context: Context?) {
         super.onAttach(context)
 
-        wikiManager = (activity!!.applicationContext as WikiApplication).wikiManager
+        wikiManager = (activity?.applicationContext as WikiApplication).wikiManager
     }
 
 
@@ -50,7 +50,7 @@ class HistoryFragment : Fragment() {
 
         doAsync {
 
-            val history = wikiManager!!.getHistory()
+            val history = wikiManager?.getHistory()
             adapter.currentResults.clear()
             adapter.currentResults.addAll(history as ArrayList<Wikipage>)
             activity?.runOnUiThread { adapter.notifyDataSetChanged() }
@@ -65,20 +65,20 @@ class HistoryFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if (item!!.itemId == R.id.action_clear_history) {
-            activity!!.alert ("Are you sure you want to clear your history","Confirm")
+            activity?.alert ("Are you sure you want to clear your history","Confirm")
             {
-                yesButton1 {
+                yesButton {
                     adapter.currentResults.clear()
                     doAsync {
                         wikiManager?.clearHistory()
                     }
-                    activity!!.runOnUiThread { adapter.notifyDataSetChanged() }
+                    activity?.runOnUiThread { adapter.notifyDataSetChanged() }
 
                 }
                 noButton {
 
                 }
-            }.show()
+            }?.show()
         }
             return true
         }

@@ -28,7 +28,7 @@ class ExploreFragment : Fragment() {
     override fun onAttach(context: Context?) {
         super.onAttach(context)
 
-        wikiManager = (activity!!.applicationContext as WikiApplication).wikiManager
+        wikiManager = (activity?.applicationContext as WikiApplication).wikiManager
     }
 
     override fun onCreateView(
