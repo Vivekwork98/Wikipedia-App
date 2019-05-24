@@ -3,7 +3,6 @@ package com.example.wikipedia
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
-import android.view.Window
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -30,11 +29,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        requestWindowFeature(Window.FEATURE_NO_TITLE)
-        supportActionBar?.hide()
-
         setContentView(R.layout.activity_main)
+
+        setSupportActionBar(toolbar)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         val transaction = supportFragmentManager.beginTransaction()

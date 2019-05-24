@@ -8,6 +8,8 @@ class ArticleListItemAdapter()  : RecyclerView.Adapter<ListItemHolder>()
 {
 
     val currentResults : ArrayList<Wikipage> = ArrayList<Wikipage>()
+
+
     override fun getItemCount(): Int {
         return  currentResults.size
     }

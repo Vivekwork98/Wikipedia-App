@@ -16,15 +16,15 @@ object Urls
                 "piprop=thumbnail|url" +
                 "&pithumbsize=200" +
                 "&pilimit=$take" +
-                "&wbpatterns=description" +
+                "&wbptterms=description" +
                 "&format=json" +
                 "&inprop=url"
     }
 
     fun getRandomUrl(take:Int) : String
     {
-        return BaseUrl + "?action=query" +
-                "format=json" +
+        return BaseUrl  + "?format=json"  +
+                "&action=query"+
                 "&formatversion=2" +
                 "&generator=random" +
                 "&grnnamesapce=0" +

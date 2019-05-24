@@ -17,13 +17,11 @@ class HistoryFragment : Fragment() {
 
     private var wikiManager : WikiManager? = null
     var historyRecycler: RecyclerView? = null
-    private val adapter  = ArticleCardRecyclerAdapter()
-
+    private val adapter : ArticleCardRecyclerAdapter = ArticleCardRecyclerAdapter()
 
     init {
         setHasOptionsMenu(true)
     }
-
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -38,7 +36,6 @@ class HistoryFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater!!.inflate(R.layout.fragment_history, container, false)
-
         historyRecycler = view.findViewById<RecyclerView>(R.id.history_article_recycler)
         historyRecycler!!.layoutManager = LinearLayoutManager(context)
         historyRecycler!!.adapter = adapter
@@ -50,7 +47,7 @@ class HistoryFragment : Fragment() {
 
         doAsync {
 
-            val history = wikiManager?.getHistory()
+            val history = wikiManager!!.getHistory()
             adapter.currentResults.clear()
             adapter.currentResults.addAll(history as ArrayList<Wikipage>)
             activity?.runOnUiThread { adapter.notifyDataSetChanged() }
@@ -65,20 +62,19 @@ class HistoryFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if (item!!.itemId == R.id.action_clear_history) {
-            activity?.alert ("Are you sure you want to clear your history","Confirm")
+            activity!!.alert ("Are you sure you want to clear your history","Confirm")
             {
                 yesButton {
                     adapter.currentResults.clear()
                     doAsync {
                         wikiManager?.clearHistory()
                     }
-                    activity?.runOnUiThread { adapter.notifyDataSetChanged() }
-
+                    activity!!.runOnUiThread { adapter.notifyDataSetChanged() }
                 }
                 noButton {
 
                 }
-            }?.show()
+            }.show()
         }
             return true
         }

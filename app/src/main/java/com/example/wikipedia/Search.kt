@@ -19,7 +19,9 @@ class Search : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
+
         wikiManager = (applicationContext as WikiApplication).wikiManager
+
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
@@ -52,7 +54,7 @@ class Search : AppCompatActivity() {
 
                 wikiManager?.search(query,0,20, { wikiResult ->
                     adapter.currentResults.clear()
-                    wikiResult.query?.pages?.let { adapter.currentResults.addAll(it) }
+                    adapter.currentResults.addAll(wikiResult.query!!.pages)
                     runOnUiThread { adapter.notifyDataSetChanged() }
                 })
                 println("Updated search")
