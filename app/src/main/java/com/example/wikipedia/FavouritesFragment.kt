@@ -43,7 +43,7 @@ class FavouritesFragment : Fragment() {
 
         doAsync {
 
-            val favouriteArticles = wikiManager!!.getFavourites()
+            val favouriteArticles = wikiManager?.getFavourites()
             adapter.currentResults.clear()
             adapter.currentResults.addAll(favouriteArticles as ArrayList<Wikipage>)
             activity?.runOnUiThread { adapter.notifyDataSetChanged() }

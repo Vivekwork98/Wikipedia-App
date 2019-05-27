@@ -50,7 +50,7 @@ class HistoryFragment : Fragment() {
             val history = wikiManager!!.getHistory()
             adapter.currentResults.clear()
             adapter.currentResults.addAll(history as ArrayList<Wikipage>)
-            activity?.runOnUiThread { adapter.notifyDataSetChanged() }
+            activity!!.runOnUiThread { adapter.notifyDataSetChanged() }
         }
     }
 
@@ -67,7 +67,7 @@ class HistoryFragment : Fragment() {
                 yesButton {
                     adapter.currentResults.clear()
                     doAsync {
-                        wikiManager?.clearHistory()
+                        wikiManager!!.clearHistory()
                     }
                     activity!!.runOnUiThread { adapter.notifyDataSetChanged() }
                 }
