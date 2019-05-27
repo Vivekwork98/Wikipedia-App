@@ -33,10 +33,10 @@ class ArticleDetailActivity : AppCompatActivity()
 
         webview = findViewById(R.id.article_detail_webView)
 
-        webview!!.webViewClient = object : WebViewClient()
+        webview?.webViewClient = object : WebViewClient()
         {
             override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
-                webview!!.loadUrl(currentPage!!.fullurl)
+                webview?.loadUrl("https://www.wikipedia.org/")
                 return true
             }
         }
