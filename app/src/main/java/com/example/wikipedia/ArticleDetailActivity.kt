@@ -2,8 +2,10 @@ package com.example.wikipedia
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.webkit.WebResourceError
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -11,11 +13,13 @@ import com.google.gson.Gson
 import kotlinx.android.synthetic.main.article_detail.*
 import org.jetbrains.anko.toast
 
+
+
 class ArticleDetailActivity : AppCompatActivity()
 {
     private var wikiManager : WikiManager? = null
     private var currentPage : Wikipage? = null
-    private var webview : WebView? = null
+    var webview : WebView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,14 +36,19 @@ class ArticleDetailActivity : AppCompatActivity()
         supportActionBar?.title = currentPage?.title
 
         webview = findViewById(R.id.article_detail_webView)
-
         webview?.webViewClient = object : WebViewClient()
         {
             override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
-                webview?.loadUrl("https://www.wikipedia.org/")
                 return true
             }
+
+            override fun onReceivedError(view: WebView, request: WebResourceRequest, error: WebResourceError)
+            {
+                super.onReceivedError(view, request, error)
+                Log.d("dcsc", "errorui")
+            }
         }
+        webview!!.loadUrl(currentPage!!.fullurl)
 
         wikiManager?.addHistory(currentPage!!)
     }
