@@ -2,11 +2,8 @@ package com.example.wikipedia
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.webkit.WebResourceError
-import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import com.google.gson.Gson
@@ -36,18 +33,8 @@ class ArticleDetailActivity : AppCompatActivity()
         supportActionBar?.title = currentPage?.title
 
         webview = findViewById(R.id.article_detail_webView)
-        webview?.webViewClient = object : WebViewClient()
-        {
-            override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
-                return true
-            }
+        webview?.webViewClient = WebViewClient()
 
-            override fun onReceivedError(view: WebView, request: WebResourceRequest, error: WebResourceError)
-            {
-                super.onReceivedError(view, request, error)
-                Log.d("dcsc", "errorui")
-            }
-        }
         webview!!.loadUrl(currentPage!!.fullurl)
 
         wikiManager?.addHistory(currentPage!!)

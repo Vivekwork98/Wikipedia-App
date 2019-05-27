@@ -47,7 +47,7 @@ class HistoryFragment : Fragment() {
 
         doAsync {
 
-            val history = wikiManager!!.getHistory()
+            val history = wikiManager?.getHistory()
             adapter.currentResults.clear()
             adapter.currentResults.addAll(history as ArrayList<Wikipage>)
             activity!!.runOnUiThread { adapter.notifyDataSetChanged() }
