@@ -32,8 +32,8 @@ class ArticleDetailActivity : AppCompatActivity()
         supportActionBar?.title = currentPage?.title
 
         webview = findViewById(R.id.article_detail_webView)
-        /*
-        webview?.webViewClient = object : WebViewClient()
+
+        /*webview?.webViewClient = object : WebViewClient()
         {
             override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
                 return false
