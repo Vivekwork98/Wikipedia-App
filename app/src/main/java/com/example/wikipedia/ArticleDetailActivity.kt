@@ -35,14 +35,15 @@ class ArticleDetailActivity : AppCompatActivity()
 
       //  webview = findViewById(R.id.article_detail_webView)
 
-        article_detail_webView.webViewClient = object : WebViewClient()
+        article_detail_webView?.webViewClient = object : WebViewClient()
         {
             override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
-                article_detail_webView.loadUrl(currentPage!!.fullurl)
-                return true
+                return false
             }
+
         }
 
+        article_detail_webView.loadUrl(currentPage!!.fullurl)
 
         wikiManager?.addHistory(currentPage!!)
     }
