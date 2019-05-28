@@ -36,7 +36,7 @@
                             android:layout_gravity="center_vertical"
                             android:layout_margin="8dp"
                             android:tint="@android:color/darker_gray"
-                            android:src="@drawable/ic_home_black_24dp"/>
+                            android:src="@drawable/search"/>
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"

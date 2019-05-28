@@ -17,7 +17,7 @@ class ArticleDetailActivity : AppCompatActivity()
 {
     private var wikiManager : WikiManager? = null
     private var currentPage : Wikipage? = null
-    var webview : WebView? = null
+    //var webview : WebView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,16 +33,16 @@ class ArticleDetailActivity : AppCompatActivity()
 
         supportActionBar?.title = currentPage?.title
 
-        webview = findViewById(R.id.article_detail_webView)
+      //  webview = findViewById(R.id.article_detail_webView)
 
-        webview?.webViewClient = object : WebViewClient()
+        article_detail_webView.webViewClient = object : WebViewClient()
         {
-            override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
-                return false
+            override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
+                article_detail_webView.loadUrl(currentPage!!.fullurl)
+                return true
             }
         }
 
-        webview!!.loadUrl(currentPage!!.fullurl)
 
         wikiManager?.addHistory(currentPage!!)
     }
