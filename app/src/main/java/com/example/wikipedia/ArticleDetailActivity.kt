@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.webkit.WebResourceRequest
 import android.webkit.WebView
+import android.webkit.WebViewClient
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.article_detail.*
 import org.jetbrains.anko.toast
@@ -33,12 +35,12 @@ class ArticleDetailActivity : AppCompatActivity()
 
         webview = findViewById(R.id.article_detail_webView)
 
-        /*webview?.webViewClient = object : WebViewClient()
+        webview?.webViewClient = object : WebViewClient()
         {
-            override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
+            override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
                 return false
             }
-        }*/
+        }
 
         webview!!.loadUrl(currentPage!!.fullurl)
 

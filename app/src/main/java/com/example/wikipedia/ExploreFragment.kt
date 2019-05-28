@@ -65,7 +65,7 @@ class ExploreFragment : Fragment() {
 
         //try
         //{
-            wikiManager?.getRandom(15,{wikiResult ->
+            wikiManager?.getRandom(15) { wikiResult ->
                 adapter.currentResults.clear()
                 adapter.currentResults.addAll(wikiResult.query!!.pages)
                 activity!!.runOnUiThread {
@@ -73,7 +73,7 @@ class ExploreFragment : Fragment() {
                     Log.d("xdfxd","vivek")
                     refresher?.isRefreshing = false
                 }
-            })
+            }
         //}
 
         /*catch (ex : Exception)

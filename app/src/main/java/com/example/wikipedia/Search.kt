@@ -52,16 +52,16 @@ class Search : AppCompatActivity() {
         {
             override fun onQueryTextSubmit(query: String): Boolean {
 
-                wikiManager?.search(query,0,20, { wikiResult ->
+                wikiManager?.search(query,0,20) { wikiResult ->
                     adapter.currentResults.clear()
                     adapter.currentResults.addAll(wikiResult.query!!.pages)
                     runOnUiThread { adapter.notifyDataSetChanged() }
-                })
+                }
                 println("Updated search")
                 return false
             }
 
-            override fun onQueryTextChange(s: String?): Boolean {
+            override fun onQueryTextChange(s: String): Boolean {
                 return false
             }
         })
