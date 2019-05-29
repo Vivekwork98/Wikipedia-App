@@ -2,6 +2,7 @@ package com.example.wikipedia
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.webkit.WebResourceRequest
@@ -17,7 +18,7 @@ class ArticleDetailActivity : AppCompatActivity()
 {
     private var wikiManager : WikiManager? = null
     private var currentPage : Wikipage? = null
-    //var webview : WebView? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,16 +34,16 @@ class ArticleDetailActivity : AppCompatActivity()
 
         supportActionBar?.title = currentPage?.title
 
-      //  webview = findViewById(R.id.article_detail_webView)
 
         article_detail_webView?.webViewClient = object : WebViewClient()
         {
             override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
+                Log.d("vxf","webmy")
                 return false
             }
 
         }
-
+        Log.d("ff","my2")
         article_detail_webView.loadUrl(currentPage!!.fullurl)
 
         wikiManager?.addHistory(currentPage!!)
