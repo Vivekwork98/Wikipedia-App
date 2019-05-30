@@ -12,7 +12,7 @@ class ListItemHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 {
     private  val articleImageView : ImageView = itemView.findViewById<ImageView>(R.id.result_icon)
     private  val titleTextView : TextView = itemView.findViewById<TextView>(R.id.result_title)
-    private var currentPage: Wikipage? = null
+    private var currentPage : Wikipage? = null
 
     init {
             itemView.setOnClickListener { view: View? ->

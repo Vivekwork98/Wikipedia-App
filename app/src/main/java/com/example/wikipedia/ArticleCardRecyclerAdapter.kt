@@ -7,6 +7,8 @@ import android.view.ViewGroup
 class ArticleCardRecyclerAdapter() : RecyclerView.Adapter<CardViewHolder>()
 {
     val currentResults : ArrayList<Wikipage> = ArrayList<Wikipage>()
+
+
     override fun getItemCount(): Int {
         return currentResults.size
     }
