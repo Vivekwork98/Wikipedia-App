@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.webkit.WebResourceRequest
+import android.webkit.WebView
 import android.webkit.WebViewClient
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.article_detail.*
@@ -33,14 +35,14 @@ class ArticleDetailActivity : AppCompatActivity()
         supportActionBar?.title = currentPage?.title
 
 
-        article_detail_webView?.webViewClient = WebViewClient()
-        /*{
+        article_detail_webView?.webViewClient = object : WebViewClient()
+        {
             override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
                 Log.d("vxf","webmy")
                 return false
             }
 
-        }*/
+        }
 
         Log.d("ff","my2")
         article_detail_webView.loadUrl(currentPage!!.fullurl)
