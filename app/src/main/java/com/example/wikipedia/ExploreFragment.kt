@@ -10,7 +10,6 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -71,7 +70,6 @@ class ExploreFragment : Fragment() {
                 adapter.currentResults.addAll(wikiResult.query!!.pages)
                 activity!!.runOnUiThread {
                     adapter.notifyDataSetChanged()
-                    Log.d("xdfxd","vivek")
                     refresher?.isRefreshing = false
                 }
             }

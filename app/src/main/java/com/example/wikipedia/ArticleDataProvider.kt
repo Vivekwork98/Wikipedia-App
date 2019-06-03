@@ -1,6 +1,5 @@
 package com.example.wikipedia
 
-import android.util.Log
 import com.github.kittinunf.fuel.core.FuelManager
 import com.github.kittinunf.fuel.core.ResponseDeserializable
 import com.github.kittinunf.fuel.httpGet
@@ -10,7 +9,7 @@ import java.io.Reader
 
 class ArticleDataProvider {
     init {
-        FuelManager.instance.baseHeaders = mapOf("User-Agent" to "User")
+        FuelManager.instance.baseHeaders = mapOf("User-Agent" to "Wikipedia")
     }
 
     fun search(term: String, skip: Int, take: Int, responseHandler: (result: WikiResult) -> Unit?) {
@@ -21,7 +20,6 @@ class ArticleDataProvider {
                         throw Exception("Unable to get articles")
                     }
                     val (data, _) = result
-                    Log.d("gddx", "my")
                     responseHandler.invoke(data as WikiResult)
             }
 
@@ -31,12 +29,11 @@ class ArticleDataProvider {
 
         Urls.getRandomUrl(take).httpGet()
             .responseObject(WikipediaDataDeserializer()) { _, response, result ->
-                //response.httpStatusCode = 200
+
                 if (response.httpStatusCode != 200) {
                     throw Exception("Unable to get articles")
                 }
                 val (data, _) = result
-                Log.d("gddx", "fcg")
                 responseHandler.invoke(data as WikiResult)
             }
 
