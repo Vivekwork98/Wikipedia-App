@@ -68,7 +68,7 @@ class ExploreFragment : Fragment() {
             wikiManager?.getRandom(25) { wikiResult ->
                 adapter.currentResults.clear()
                 adapter.currentResults.addAll(wikiResult.query!!.pages)
-                activity!!.runOnUiThread {
+                activity?.runOnUiThread {
                     adapter.notifyDataSetChanged()
                     refresher?.isRefreshing = false
                 }
