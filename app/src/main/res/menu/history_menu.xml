@@ -5,6 +5,5 @@
     <item
             android:title="Clear"
             android:id="@+id/action_clear_history"
-            app:showAsAction="always"
-            android:visible="true"/>
+            app:showAsAction="always"/>
 </menu>
