@@ -23,8 +23,8 @@ object Urls
 
     fun getRandomUrl(take:Int) : String
     {
-        return BaseUrl  + "?format=json"  +
-                "&action=query"+
+        return BaseUrl + "?action=query" +
+                "&format=json" +
                 "&formatversion=2" +
                 "&generator=random" +
                 "&grnnamesapce=0" +
