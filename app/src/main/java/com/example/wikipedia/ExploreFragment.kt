@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.widget.SwipeRefreshLayout
+import android.support.v7.app.AlertDialog
 import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
@@ -63,9 +64,9 @@ class ExploreFragment : Fragment() {
 
         refresher?.isRefreshing = true
 
-        //try
-        //{
-            wikiManager?.getRandom(50) { wikiResult ->
+        try
+        {
+            wikiManager?.getRandom(25) { wikiResult ->
                 adapter.currentResults.clear()
                 adapter.currentResults.addAll(wikiResult.query!!.pages)
                 activity!!.runOnUiThread {
@@ -74,15 +75,15 @@ class ExploreFragment : Fragment() {
                     refresher?.isRefreshing = false
                 }
             }
-        //}
+        }
 
-        /*catch (ex : Exception)
+        catch (ex : Exception)
         {
             val builder = activity?.let { AlertDialog.Builder(it) }
             builder?.setMessage(ex.message)?.setTitle("oops")
             val dialog = builder?.create()
             dialog?.show()
-        }*/
+        }
 
 
     }
