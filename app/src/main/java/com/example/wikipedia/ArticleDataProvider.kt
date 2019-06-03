@@ -16,14 +16,14 @@ class ArticleDataProvider {
     fun search(term: String, skip: Int, take: Int, responseHandler: (result: WikiResult) -> Unit?) {
         Urls.getSearchUrl(term, skip, take).httpGet()
             .responseObject(WikipediaDataDeserializer()) { _, response, result ->
-                if (response.httpStatusCode != 200) {
-                    throw Exception("Unable to get articles")
-                }
-                val (data, _) = result
-                Log.d("gddx", "my")
-                responseHandler.invoke(data as WikiResult)
-            }
 
+                    if (response.httpStatusCode != 200) {
+                        throw Exception("Unable to get articles")
+                    }
+                    val (data, _) = result
+                    Log.d("gddx", "my")
+                    responseHandler.invoke(data as WikiResult)
+            }
 
     }
 
