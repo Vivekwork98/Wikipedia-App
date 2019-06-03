@@ -17,7 +17,7 @@ class HistoryFragment : Fragment() {
 
     private var wikiManager : WikiManager? = null
     var historyRecycler: RecyclerView? = null
-    private val adapter : ArticleCardRecyclerAdapter = ArticleCardRecyclerAdapter()
+    private val adapter : ArticleListItemAdapter = ArticleListItemAdapter()
 
     init {
         setHasOptionsMenu(true)
