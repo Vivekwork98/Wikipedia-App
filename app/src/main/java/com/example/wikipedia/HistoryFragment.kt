@@ -40,6 +40,7 @@ class HistoryFragment : Fragment() {
         historyRecycler!!.layoutManager = LinearLayoutManager(context)
         historyRecycler!!.adapter = adapter
         return view
+
     }
 
     override fun onResume() {
