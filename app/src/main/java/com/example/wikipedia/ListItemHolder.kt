@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.article_card_item.view.*
 
 class ListItemHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 {
@@ -22,6 +23,8 @@ class ListItemHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
             itemView.context.startActivity(detailPageIntent)
         }
     }
+
+    val title = itemView.article_title
 
     fun updateWithPage(page : Wikipage)
     {

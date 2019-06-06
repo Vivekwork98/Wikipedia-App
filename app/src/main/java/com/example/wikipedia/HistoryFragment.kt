@@ -6,7 +6,10 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.SearchView
+import android.util.Log
 import android.view.*
+import android.widget.EditText
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.noButton
@@ -18,6 +21,9 @@ class HistoryFragment : Fragment() {
     private var wikiManager : WikiManager? = null
     var historyRecycler: RecyclerView? = null
     private val adapter : ArticleListItemAdapter = ArticleListItemAdapter()
+    private var currentPage : Wikipage? = null
+    private var pagelist : ArrayList<String> = ArrayList()
+
 
     init {
         setHasOptionsMenu(true)
@@ -59,6 +65,39 @@ class HistoryFragment : Fragment() {
         super.onCreateOptionsMenu(menu, inflater)
 
         inflater!!.inflate(R.menu.history_menu, menu)
+
+        val searchItem = menu!!.findItem(R.id.menu_search)
+        if(searchItem != null) {
+            val searchView = searchItem.actionView as SearchView
+            val editext = searchView.findViewById<EditText>(android.support.v7.appcompat.R.id.search_src_text)
+            editext.hint = "Search here..."
+
+            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    return true
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+
+                    pagelist.clear()
+                    if (newText!!.isNotEmpty()) {
+
+                        val search = newText.toLowerCase()
+                        currentPage?.title?.forEach {
+                            Log.d("dsfs","textiy")
+                            if (currentPage!!.title!!.toLowerCase().contains(search)) {
+                                pagelist.add(currentPage?.title.toString())
+                            }
+                        }
+                    } else {
+                        pagelist.addAll(listOf(currentPage.toString()))
+                    }
+                    historyRecycler!!.adapter!!.notifyDataSetChanged()
+                    return true
+                }
+
+            })
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
